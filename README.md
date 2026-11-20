@@ -79,7 +79,7 @@ The mart layer is a star schema.
 
 ![Dashboard screenshot](docs/dashboard.png)
 
-Live dashboard: [link to Looker Studio report]
+Live dashboard: [https://datastudio.google.com/reporting/e5f41b4d-070e-440b-89a2-2821b05801d6]
 
 The dashboard shows five KPI cards (OTIF %, on-time %, in-full %, total order value, delayed capital risk), monthly OTIF, on-time % by carrier, in-full % against SLA by supplier, and a table of the most delayed orders, with a date filter.
 
