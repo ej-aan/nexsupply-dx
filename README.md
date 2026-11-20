@@ -77,7 +77,7 @@ The mart layer is a star schema.
 
 ## Dashboard
 
-![Dashboard screenshot](docs/dashboard.png)
+![Dashboard screenshot](Docs/dashboard.png)
 
 Live dashboard: [https://datastudio.google.com/reporting/e5f41b4d-070e-440b-89a2-2821b05801d6]
 
