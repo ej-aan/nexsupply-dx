@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: dim_dealers
+    description: "Tabel dimensi master bengkel resmi"
+    columns:
+      - name: dealer_id
+        description: "Primary key unik cabang dealer"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_parts
+    description: "Tabel dimensi katalog suku cadang OEM"
+    columns:
+      - name: part_sku
+        description: "Primary key SKU suku cadang"
+        tests:
+          - unique
+          - not_null
+      - name: unit_cost_idr
+        tests:
+          - not_null
+
+  - name: dim_suppliers
+    description: "Tabel dimensi pemasok resmi OEM"
+    columns:
+      - name: supplier_id
+        description: "Primary key supplier"
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_order_fulfillment
+    description: "Tabel fakta utama pengiriman suku cadang & evaluasi OTIF"
+    columns:
+      - name: fulfillment_key
+        description: "Surrogate key unik baris fakta"
+        tests:
+          - unique
+          - not_null
+
+      # UJI INTEGRITAS REFERENSIAL (Foreign Key Validation)
+      - name: dealer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_dealers')
+              field: dealer_id
+
+      - name: part_sku
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_parts')
+              field: part_sku
+
+      - name: supplier_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_suppliers')
+              field: supplier_id
+
+      # VALIDASI LOGIKA BISNIS (Hanya boleh 0 atau 1)
+      - name: is_otif
+        tests:
+          - accepted_values:
+              values: [0, 1]
+              quote: false

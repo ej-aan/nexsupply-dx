@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: erp
+    database: nexsupply-dx
+    schema: nexsupply_raw
+    description: "Database mentah sistem ERP & SCM internal/external"
+    tables:
+      - name: raw_dealers
+        description: "Data cabang bengkel resmi (dealerships)"
+      - name: raw_suppliers
+        description: "Data pemasok suku cadang OEM resmi"
+      - name: raw_parts
+        description: "Katalog suku cadang dan target waktu pengiriman"
+      - name: raw_purchase_orders
+        description: "Riwayat pesanan suku cadang dari bengkel ke gudang pusat"
+      - name: raw_shipments
+        description: "Logistik riil pengiriman suku cadang dan status transit"

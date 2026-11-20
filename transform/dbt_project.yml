@@ -1,0 +1,29 @@
+name: 'nexsupply_transform'
+version: '1.0.0'
+config-version: 2
+
+profile: 'nexsupply_transform'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Konfigurasi Materialisasi (Standar Enterprise):
+# - Staging: View (hemat storage, selalu up-to-date)
+# - Intermediate: Ephemeral/View (transformasi sementara)
+# - Marts: Table (disimpan fisik di BigQuery agar dashboard BI super cepat)
+models:
+  nexsupply_transform:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table

@@ -1,0 +1,13 @@
+nexsupply_transform:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: nexsupply-dx
+      dataset: nexsupply_dev           # Dataset tempat dbt membangun tabel baru
+      threads: 4
+      keyfile: ../credentials/gcp_key.json
+      location: asia-southeast2        # Region Jakarta
+      timeout_seconds: 300
+      priority: interactive
